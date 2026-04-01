@@ -1,0 +1,11 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@biker-app/shared": ["../../packages/shared/src"]
+    }
+  },
+  "include": ["app/**/*", "*.ts", "*.tsx"],
+  "exclude": ["node_modules", ".expo", "dist"]
+}
