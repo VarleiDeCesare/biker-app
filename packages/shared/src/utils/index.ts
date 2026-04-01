@@ -2,10 +2,6 @@ export function formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
 }
 
-export function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 export function isNonEmpty<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined;
 }

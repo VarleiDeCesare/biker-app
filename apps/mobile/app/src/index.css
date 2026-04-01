@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 5.1%;
+    --foreground: 0 0% 96.1%;
+
+    --card: 0 0% 10.2%;
+    --card-foreground: 0 0% 96.1%;
+
+    --popover: 0 0% 14.1%;
+    --popover-foreground: 0 0% 96.1%;
+
+    --primary: 20 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --primary-soft: 24 100% 63%;
+
+    --secondary: 0 0% 14.1%;
+    --secondary-foreground: 0 0% 96.1%;
+
+    --muted: 0 0% 16.5%;
+    --muted-foreground: 0 0% 53.3%;
+
+    --accent: 0 0% 14.1%;
+    --accent-foreground: 0 0% 96.1%;
+
+    --destructive: 6 74% 57%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 63% 49%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 24 100% 63%;
+    --warning-foreground: 0 0% 5.1%;
+
+    --border: 0 0% 16.5%;
+    --input: 0 0% 16.5%;
+    --ring: 20 100% 50%;
+
+    --radius: 0.75rem;
+
+    --surface: 0 0% 10.2%;
+    --surface-raised: 0 0% 14.1%;
+    --divider: 0 0% 16.5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .font-mono-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
