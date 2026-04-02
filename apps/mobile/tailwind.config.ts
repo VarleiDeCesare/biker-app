@@ -1,70 +1,60 @@
 import type { Config } from 'tailwindcss';
-import tailwindcssAnimate from 'tailwindcss-animate';
 
 export default {
-  darkMode: ['class'],
-  content: ['./app/src/**/*.{ts,tsx}', './index.html'],
+  content: [
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        surface: {
-          DEFAULT: 'hsl(var(--surface))',
-          raised: 'hsl(var(--surface-raised))',
-        },
-        divider: 'hsl(var(--divider))',
+        background: '#0D0D0D',
+        foreground: '#F5F5F5',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-          soft: 'hsl(var(--primary-soft))',
+          DEFAULT: '#FF4D00',
+          foreground: '#FFFFFF',
+          soft: '#FF8C42',
         },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+        surface: {
+          DEFAULT: '#1A1A1A',
+          raised: '#242424',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: '#2A2A2A',
+          foreground: '#888888',
         },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+        divider: '#2A2A2A',
+        border: '#2A2A2A',
+        destructive: {
+          DEFAULT: '#E74C3C',
+          foreground: '#FFFFFF',
         },
         success: {
-          DEFAULT: 'hsl(var(--success))',
-          foreground: 'hsl(var(--success-foreground))',
+          DEFAULT: '#2ECC71',
+          foreground: '#FFFFFF',
         },
         warning: {
-          DEFAULT: 'hsl(var(--warning))',
-          foreground: 'hsl(var(--warning-foreground))',
+          DEFAULT: '#FF8C42',
+          foreground: '#0D0D0D',
+        },
+        card: {
+          DEFAULT: '#1A1A1A',
+          foreground: '#F5F5F5',
         },
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        lg: '16px',
+        md: '8px',
+        sm: '4px',
+        xl: '24px',
+        '2xl': '32px',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        sans: ['Inter_400Regular', 'System'],
+        mono: ['JetBrainsMono_400Regular', 'Menlo', 'monospace'],
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [],
 } satisfies Config;

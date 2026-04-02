@@ -7,7 +7,7 @@ Claude must read and follow every section before writing any code.
 
 ## Project Overview
 
-Biker App is a companion app for motorcycle enthusiasts. It allows riders to track GPS trips in real time, manage their motorcycle garage, log maintenance records, track fuel consumption and receive maintenance alerts. The backend is a REST API built with NestJS. The frontend is a Vite + React SPA (web).
+Biker App is a companion app for motorcycle enthusiasts. It allows riders to track GPS trips in real time, manage their motorcycle garage, log maintenance records, track fuel consumption and receive maintenance alerts. The backend is a REST API built with NestJS. The frontend is an Expo + React Native app (iOS/Android/Web).
 
 ---
 
@@ -17,7 +17,7 @@ Biker App is a companion app for motorcycle enthusiasts. It allows riders to tra
 biker-app/
 ├── apps/
 │   ├── api/          # NestJS backend
-│   └── mobile/       # Vite + React SPA (web)
+│   └── mobile/       # Expo + React Native app
 ├── packages/
 │   └── shared/       # Shared TypeScript types and constants
 ├── turbo.json
