@@ -224,4 +224,4 @@ Minimum coverage requirements: services 70%, controllers 50%.
 
 ## Docker and Deploy
 
-The `apps/api/Dockerfile` must use a multi-stage build. Stage 1 (`builder`) installs all dependencies and compiles TypeScript. Stage 2 (`runner`) copies only the compiled output and production dependencies. The final image must not contain `devDependencies`, source `.ts` files or the `node_modules/.cache` directory. The Railway service must expose port 3000 and define a health check at `GET /health`.
+The `apps/api/Dockerfile` must use a multi-stage build. Stage 1 (`builder`) installs all dependencies and compiles TypeScript. Stage 2 (`runner`) copies only the compiled output and production dependencies. The final image must not contain `devDependencies`, source `.ts` files or the `node_modules/.cache` directory. The app listens on PORT env (default `3333` locally). The health check endpoint is `GET /api/health`. On Railway, set PORT via the service env vars.

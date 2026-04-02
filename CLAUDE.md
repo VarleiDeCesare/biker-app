@@ -7,7 +7,7 @@ Claude must read and follow every section before writing any code.
 
 ## Project Overview
 
-Biker App is a mobile companion app for motorcycle enthusiasts. It allows riders to track GPS trips in real time, manage their motorcycle garage, log maintenance records, track fuel consumption and receive maintenance alerts. The backend is a REST API built with NestJS. The mobile app is built with React Native using Expo.
+Biker App is a companion app for motorcycle enthusiasts. It allows riders to track GPS trips in real time, manage their motorcycle garage, log maintenance records, track fuel consumption and receive maintenance alerts. The backend is a REST API built with NestJS. The frontend is a Vite + React SPA (web).
 
 ---
 
@@ -17,7 +17,7 @@ Biker App is a mobile companion app for motorcycle enthusiasts. It allows riders
 biker-app/
 ├── apps/
 │   ├── api/          # NestJS backend
-│   └── mobile/       # React Native (Expo)
+│   └── mobile/       # Vite + React SPA (web)
 ├── packages/
 │   └── shared/       # Shared TypeScript types and constants
 ├── turbo.json
@@ -40,7 +40,7 @@ Always use `pnpm`. Never use `npm` or `yarn`. Always run commands from the monor
 - All code is TypeScript with strict mode enabled. Never use `any`. Use `unknown` and narrow types properly.
 - Never disable ESLint rules inline unless there is an explicit comment explaining why and it is absolutely necessary.
 - Never use `console.log` in production code. Use the project logger (NestJS Logger on the API, a custom logger utility on mobile).
-- All files use named exports. No default exports except for React Native screen components and Expo Router pages (which require default exports).
+- All files use named exports. No default exports.
 - Keep functions small and single-purpose. If a function exceeds 40 lines, consider splitting it.
 - Always handle errors explicitly. Never swallow errors silently.
 - Use `const` by default. Only use `let` when reassignment is genuinely needed. Never use `var`.
@@ -61,7 +61,7 @@ Always use `pnpm`. Never use `npm` or `yarn`. Always run commands from the monor
 
 ## Environment Variables
 
-Never hardcode secrets, API keys, database URLs or any environment-specific values. Always read from environment variables via `ConfigService` on the API and `expo-constants` or `.env` on mobile. All required env vars must be documented in the relevant `.env.example` file. The API `.env.example` lives at `apps/api/.env.example`. The mobile `.env.example` lives at `apps/mobile/.env.example`.
+Never hardcode secrets, API keys, database URLs or any environment-specific values. Always read from environment variables via `ConfigService` on the API and Vite's `import.meta.env` (`.env` files) on mobile. All required env vars must be documented in the relevant `.env.example` file. The API `.env.example` lives at `apps/api/.env.example`. The mobile `.env.example` lives at `apps/mobile/.env.example`.
 
 ---
 
