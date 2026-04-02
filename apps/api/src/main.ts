@@ -1,12 +1,34 @@
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const logger = new Logger('Bootstrap');
+  const app = await NestFactory.create(AppModule, {
+    bodyParser: false,
+    forceCloseConnections: true,
+  });
+
   app.setGlobalPrefix('api');
-  const port = process.env.PORT ?? 3000;
+
+  app.useGlobalFilters(new GlobalExceptionFilter());
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+
+  app.enableShutdownHooks();
+
+  const port = process.env.PORT ?? 3333;
   await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}/api`);
+
+  logger.log(`Application is running on: http://localhost:${port}/api`);
 }
 
 bootstrap();

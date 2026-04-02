@@ -1,11 +1,26 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "paths": {
+      "@/*": ["./app/src/*"],
       "@biker-app/shared": ["../../packages/shared/src"]
     }
   },
-  "include": ["app/**/*", "*.ts", "*.tsx"],
-  "exclude": ["node_modules", ".expo", "dist"]
+  "include": ["app/src/**/*", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }
