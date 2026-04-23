@@ -5,7 +5,7 @@ import * as schema from '../db/schema';
 import { openAPI } from 'better-auth/plugins';
 
 export const auth = betterAuth({
-  basePath: '/api/auth',
+  // basePath: process.env.BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   trustedOrigins: ['*'], // FIXME: restrict trusted origins before going to production
   database: drizzleAdapter(db, { provider: 'pg', schema }),
