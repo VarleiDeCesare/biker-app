@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Eye, EyeOff } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '@/theme';
+import { handleGoogleLogin } from '../src/lib/auth-client';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -65,7 +66,10 @@ export default function LoginScreen() {
             <View className="flex-1 border-t border-divider" />
           </View>
 
-          <Pressable className="h-12 w-full flex-row items-center justify-center gap-2 rounded-lg border border-foreground/20 active:bg-surface">
+          <Pressable
+            className="h-12 w-full flex-row items-center justify-center gap-2 rounded-lg border border-foreground/20 active:bg-surface"
+            onPress={handleGoogleLogin}
+          >
             <Text className="text-sm font-semibold text-foreground">Sign in with Google</Text>
           </Pressable>
           <Pressable className="h-12 w-full flex-row items-center justify-center gap-2 rounded-lg border border-foreground/20 active:bg-surface">

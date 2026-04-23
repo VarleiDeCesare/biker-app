@@ -1,5 +1,6 @@
-import '../global.css';
+import '../global.css'; //FIXME:
 import { useEffect } from 'react';
+import { useColorScheme } from 'nativewind';
 import { Stack } from 'expo-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as SplashScreen from 'expo-splash-screen';
@@ -25,6 +26,7 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
+  const { setColorScheme } = useColorScheme();
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -36,6 +38,7 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
+    setColorScheme('dark');
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }

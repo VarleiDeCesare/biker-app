@@ -9,6 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bodyParser: false,
     forceCloseConnections: true,
+    cors: false //FIXME:
   });
 
   app.setGlobalPrefix('api');

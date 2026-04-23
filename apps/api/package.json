@@ -21,6 +21,7 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
+    "@better-auth/expo": "^1.6.8",
     "@biker-app/shared": "workspace:*",
     "@nestjs/common": "11.1.18",
     "@nestjs/config": "^4.0.3",
@@ -33,7 +34,8 @@
     "drizzle-orm": "^0.45.2",
     "pg": "^8.20.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@nestjs/cli": "11.0.18",
