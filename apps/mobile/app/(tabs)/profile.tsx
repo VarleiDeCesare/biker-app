@@ -1,12 +1,14 @@
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User, Award, Bell, Ruler, Info, ChevronRight, LogOut, Plus } from 'lucide-react-native';
+import { useQuery } from '@tanstack/react-query';
 import { StatCard } from '@/components/ride/StatCard';
 import { BikeCard } from '@/components/ride/BikeCard';
 import { SectionHeader } from '@/components/ride/SectionHeader';
 import { colors } from '@/theme';
-import { handleLogout } from '@/lib/auth-client';
+import { authClient, handleLogout } from '@/lib/auth-client';
+import { getRiderStats, getTotalRides } from '@/lib/api';
 
 const ACHIEVEMENTS = [
   { label: 'Century', unlocked: true },
@@ -24,26 +26,38 @@ const SETTINGS = [
 
 export default function ProfileScreen() {
   const router = useRouter();
+  const { data, isPending } = authClient.useSession();
+
+  //FIXME:
+  const { data: stats } = useQuery({ queryKey: ['rider-stats'], queryFn: getRiderStats });
+  const { data: ridesData } = useQuery({ queryKey: ['total-rides'], queryFn: getTotalRides });
+
+  if (isPending) {
+    return (
+      <SafeAreaView className="flex-1 bg-background items-center justify-center">
+        <ActivityIndicator color={colors.primary} />
+      </SafeAreaView>
+    );
+  }
+
+  const user = data?.user;
 
   return (
     <SafeAreaView className="flex-1 bg-background" edges={['top']}>
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 20 }}>
         <View className="px-4 pt-6">
-          {/* Rider Profile */}
           <View className="flex-row items-center gap-4">
             <View className="h-16 w-16 items-center justify-center rounded-full bg-surface-raised">
               <User size={28} color={colors.mutedForeground} />
             </View>
             <View>
-              <Text className="text-lg font-bold text-foreground">Alex Rider</Text>
-              <Text className="text-sm text-muted-foreground">5 years riding · Sport</Text>
+              <Text className="text-lg font-bold text-foreground">{user?.name ?? '—'}</Text>
+              <Text className="text-sm text-muted-foreground">5 years riding.</Text>
             </View>
           </View>
-
-          {/* Lifetime Stats */}
           <View className="mt-5 flex-row gap-2">
-            <StatCard label="Total KM" value="24,380" />
-            <StatCard label="Rides" value="142" />
+            <StatCard label="Total KM" value={stats ? stats.kmTotal.toLocaleString() : '—'} />
+            <StatCard label="Rides" value={ridesData ? ridesData.rides.toLocaleString() : '—'} />
             <StatCard label="Hours" value="312" />
           </View>
 
