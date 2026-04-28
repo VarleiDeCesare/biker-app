@@ -10,7 +10,8 @@ export const auth = betterAuth({
   trustedOrigins: [process.env.FRONT_END_BASE_URL ?? 'http://localhost:8081'],
   database: drizzleAdapter(db, { provider: 'pg', schema }),
   emailAndPassword: {
-    enabled: true,
+    enabled: String(process.env.DEVELOPMENT_MODE) === 'true' ? true : false,
+    //FIXME: Testar esse enabled.
   },
   plugins: [openAPI(), expo()],
   socialProviders: {

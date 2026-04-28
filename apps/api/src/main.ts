@@ -1,15 +1,14 @@
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
-  const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule, {
     bodyParser: false,
     forceCloseConnections: true,
-    cors: false //FIXME:
+    cors: false, //check it
   });
 
   app.setGlobalPrefix('api');
@@ -28,8 +27,6 @@ async function bootstrap() {
 
   const port = process.env.PORT ?? 3333;
   await app.listen(port);
-
-  logger.log(`Application is running on: http://localhost:${port}/api`);
 }
 
 bootstrap();
