@@ -6,6 +6,7 @@ import { StatCard } from '@/components/ride/StatCard';
 import { BikeCard } from '@/components/ride/BikeCard';
 import { SectionHeader } from '@/components/ride/SectionHeader';
 import { colors } from '@/theme';
+import { handleLogout } from '@/lib/auth-client';
 
 const ACHIEVEMENTS = [
   { label: 'Century', unlocked: true },
@@ -97,8 +98,6 @@ export default function ProfileScreen() {
               />
             </View>
           </View>
-
-          {/* Settings */}
           <View className="mt-6">
             <SectionHeader title="Settings" />
             <View className="rounded-lg bg-surface">
@@ -120,9 +119,8 @@ export default function ProfileScreen() {
             </View>
           </View>
 
-          {/* Logout */}
           <Pressable
-            onPress={() => router.replace('/')}
+            onPress={async () => await handleLogout('/login')}
             className="mt-4 flex-row h-12 w-full items-center justify-center gap-2 rounded-lg"
           >
             <LogOut size={16} color={colors.destructive} />
